@@ -17,6 +17,7 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body>
 
     <div style="padding: 10px">
@@ -71,7 +72,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        Position : <span id="spn_WarResult">1 0 N</span>
+                        Final Position : <span id="spn_WarResult"></span> <br/>
+                        Penalties : <span id="spn_WarResultPenalty"></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -108,6 +110,7 @@
                 }).done(function (data) {
                     console.log(data);
                     $('#spn_WarResult').html(data.EndPositionX + ', ' + data.EndPositionY + ', ' + data.EndDirection);
+                    $('#spn_WarResultPenalty').html(data.Penalties);
                     $('#exampleModal').modal('show');
                 }).fail(function () {
                     alert("error");
@@ -139,4 +142,5 @@
     </script>
 
 </body>
+
 </html>

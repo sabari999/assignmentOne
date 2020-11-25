@@ -73,10 +73,13 @@
             penalty = 0;
             Position newRobotPosition = direction.MoveForward(position);
             if (!arena.IsInside(newRobotPosition))
-            //throw new OutOfArenaException();
             {
                 penalty = 1;
             }
+
+            newRobotPosition.X = newRobotPosition.X >= 5 ? newRobotPosition.X - 1 : newRobotPosition.X < 0 ? newRobotPosition.X + 1 : newRobotPosition.X;
+            newRobotPosition.Y = newRobotPosition.Y >= 5 ? newRobotPosition.Y - 1 : newRobotPosition.Y < 0 ? newRobotPosition.Y +1 : newRobotPosition.Y;
+
             position = newRobotPosition;
 
             return penalty;

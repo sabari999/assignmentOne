@@ -8,12 +8,7 @@ namespace robowar_tvs.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+                
         public ActionResult RoboWar()
         {
             return View();
@@ -21,91 +16,44 @@ namespace robowar_tvs.Controllers
 
         public JsonResult ProcessInstructions(InstructionParams obj)
         {
-            var processLocation = new ProcessLocation();
-
-            var robot = processLocation.Parse(obj.InitialPositionX, obj.InitialPositionY, obj.InitialDirection);
-
-            IEnumerable<IMove> robotMoves = ProcessMoves.Parse(obj.MovingInstructions);
-            //robotMoves.ForEach(item => item.ExecuteOn(robot, out int penalty));
-
-            //var prevX = 0;
-            //var prevY = 0;
-            //var totalPenalty = 0;
-            //bool keepPreviousPosition = false;
-            //foreach (var item in robotMoves)
-            //{
-
-            //    if (keepPreviousPosition)
-            //    {
-            //        robot.Coordinate.X = prevX;
-            //        robot.Coordinate.Y = prevY;
-            //    }
-            //    else
-            //    {
-            //        prevX = robot.Coordinate.X;
-            //        prevY = robot.Coordinate.Y;
-            //    }
-            //    item.ExecuteOn(robot, out int penalty);
-            //    keepPreviousPosition = penalty > 0;
-            //    if (penalty > 0) { totalPenalty++; }
-            //}
-
-
-
-            //int[] penalties = { };
-            var penalties = new List<int>();
-            int totalPenalty = 0;
-            int iteration = 0;
-            Position previousPostion;
-            var prevX = 0;
-            var prevY = 0;
-            bool keepPreviousPosition = false;
-            foreach (var item in robotMoves)
+            try
             {
-                iteration++;
+                var processLocation = new ProcessLocation();
 
-                prevX = robot.Coordinate.X;
-                prevY = robot.Coordinate.Y;
+                var robot = processLocation.Parse(obj.InitialPositionX, obj.InitialPositionY, obj.InitialDirection);
 
-                if (keepPreviousPosition)
+                IEnumerable<IMove> robotMoves = ProcessMoves.Parse(obj.MovingInstructions);
+
+                int totalPenalty = 0;
+
+                foreach (var item in robotMoves)
                 {
-                    robot.Coordinate.X = prevX;
-                    robot.Coordinate.Y = prevY;
-                }
-                item.ExecuteOn(robot, out int penalty);
 
-                keepPreviousPosition = penalty > 0;
+                    item.ExecuteOn(robot, out int penalty);
 
-                penalties.Add(penalty);
+                    if (penalty > 0)
+                    {
+                        totalPenalty++;
+                    }
 
-
-                //if (iteration == 1)
-                //{
-                //    penalties.Add(penalty);
-                //}
-                //else
-                //{
-                //    penalties[penalties.Count] = penalty;
-                //}
-
-                if (penalty > 0 && penalties[penalties.Count - 1] == 0)
-                {
-                    totalPenalty++;
                 }
 
+                var result = new ProcessOutput
+                {
+                    EndPositionX = robot.Coordinate.X.ToString(),
+                    EndPositionY = robot.Coordinate.Y.ToString(),
+                    EndDirection = robot.Direction.ToString(),
+                    Penalties = totalPenalty.ToString()
+                };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (System.Exception ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
 
             }
 
-
-
-            var result = new ProcessOutput
-            {
-                EndPositionX = robot.Coordinate.X.ToString(),
-                EndPositionY = robot.Coordinate.Y.ToString(),
-                EndDirection = robot.Direction.ToString()
-            };
-
-            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
     }

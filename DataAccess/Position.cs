@@ -6,8 +6,8 @@ namespace DataAccess
 {
     public class Position
     {
-        private readonly int x;
-        private readonly int y;
+        private int x;
+        private int y;
 
         public Position(int x, int y)
         {
@@ -18,13 +18,13 @@ namespace DataAccess
         public int X
         {
             get { return x; }
-            set { }
+            set { x = value; }
         }
 
         public int Y
         {
             get { return y; }
-            set { }
+            set { y = value; }
         }
 
         public Position Clone()
