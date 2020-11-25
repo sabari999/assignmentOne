@@ -18,42 +18,67 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+
     <div style="padding: 10px">
 
-        <form>
-            <div class="form-group">
-                <label>Initial position X</label>
-                <input type="number" min="0" max="5" value="0" class="form-control" id="txt_IpX">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Robot War</h1>
+                <form style="margin-top:50px;">
+                    <div class="form-group">
+                        <label>Initial position X</label>
+                        <input type="number" min="0" max="5" value="0" class="form-control" id="txt_IpX">
+                    </div>
+                    <div class="form-group">
+                        <label>Initial position Y</label>
+                        <input type="number" min="0" max="5" value="0" class="form-control" id="txt_IpY">
+                    </div>
+                    <div class="form-group">
+                        <label>Initial Direction</label>
+                        <select class="form-control" id="ddl_IDir">
+                            <option value="E">East</option>
+                            <option value="W">West</option>
+                            <option value="N">North</option>
+                            <option value="S">South</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Movement Instructions</label>
+                        <div class="input-group-prepend">
+                            <input type="button" class="btn btn-info" value="Left" onclick="appendMovingInstructions('L')" />&nbsp;
+                            <input type="button" class="btn btn-info" value="Right" onclick="appendMovingInstructions('R')" />&nbsp;
+                            <input type="button" class="btn btn-info" value="Move Next" onclick="appendMovingInstructions('M')" />&nbsp;
+                            <input type="button" class="btn btn-danger" value="Clear" onclick="appendMovingInstructions('C')" />
+                        </div>
+                        <input type="text" class="form-control" style="margin-top:10px;" id="txt_MovingInstructions" readonly>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary float-right" onclick="handleStart()">Start</button>
+                    </div>
+
+
+                </form>
             </div>
-            <div class="form-group">
-                <label>Initial position Y</label>
-                <input type="number" min="0" max="5" value="0" class="form-control" id="txt_IpY">
-            </div>
-            <div class="form-group">
-                <label>Initial Direction</label>
-                <select class="form-control" id="ddl_IDir">
-                    <option value="E">East</option>
-                    <option value="W">West</option>
-                    <option value="N">North</option>
-                    <option value="S">South</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Movements Instructions</label>
-                <div class="input-group-prepend">
-                    <input type="button" class="input-group-text" value="Left" onclick="appendMovingInstructions('L')" />
-                    <input type="button" class="input-group-text" value="Right" onclick="appendMovingInstructions('R')" />
-                    <input type="button" class="input-group-text" value="Move Next" onclick="appendMovingInstructions('M')" />
-                    <input type="button" class="input-group-text" value="Clear" onclick="appendMovingInstructions('C')" />
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Result</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Position : <span id="spn_WarResult">1 0 N</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <input type="text" class="form-control" id="txt_MovingInstructions" readonly>
             </div>
-
-            <div>
-                <button type="button" class="btn btn-primary float-right" onclick="handleStart()">Start</button>
-            </div>
-
-        </form>
+        </div>
 
     </div>
 
@@ -81,7 +106,9 @@
                     InitialDirection: $('#ddl_IDir').val(),
                     MovingInstructions: $('#txt_MovingInstructions').val()
                 }).done(function (data) {
-                    console.log(data)
+                    console.log(data);
+                    $('#spn_WarResult').html(data.EndPositionX + ', ' + data.EndPositionY + ', ' + data.EndDirection);
+                    $('#exampleModal').modal('show');
                 }).fail(function () {
                     alert("error");
                 })
