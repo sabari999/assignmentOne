@@ -89,18 +89,35 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app-menu.min.js" />
+    <Content Include="Scripts\app.min.js" />
+    <Content Include="Scripts\customizer.min.js" />
+    <Content Include="Scripts\prism.min.js" />
+    <Content Include="Scripts\vendors.min.js" />
+    <Content Include="Styles\pallette.gradient.min.css" />
+    <Content Include="Styles\prism.min.css" />
+    <Content Include="Styles\stye.css" />
+    <Content Include="Styles\vertical-menu.min.css" />
+    <Content Include="Styles\vendors.min.css" />
+    <Content Include="Styles\app.min.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\GetEnumerable.cs" />
+    <Compile Include="Models\InstructionParams.cs" />
+    <Compile Include="Models\ProcessOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\RoboWar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,8 +127,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{0C336B2E-AD5A-4B2A-8CF6-0EE62C70E473}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataProvider\DataProvider.csproj">
+      <Project>{5E26FB6D-F733-4454-B3C2-D7CAE9B3DD62}</Project>
+      <Name>DataProvider</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

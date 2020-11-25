@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "robowar-tvs", "robowar-tvs\robowar-tvs.csproj", "{2A3C8FF2-9A2B-431C-ACA5-621225003DC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{0C336B2E-AD5A-4B2A-8CF6-0EE62C70E473}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProvider", "DataProvider\DataProvider.csproj", "{5E26FB6D-F733-4454-B3C2-D7CAE9B3DD62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{2A3C8FF2-9A2B-431C-ACA5-621225003DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A3C8FF2-9A2B-431C-ACA5-621225003DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A3C8FF2-9A2B-431C-ACA5-621225003DC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C336B2E-AD5A-4B2A-8CF6-0EE62C70E473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C336B2E-AD5A-4B2A-8CF6-0EE62C70E473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C336B2E-AD5A-4B2A-8CF6-0EE62C70E473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C336B2E-AD5A-4B2A-8CF6-0EE62C70E473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E26FB6D-F733-4454-B3C2-D7CAE9B3DD62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E26FB6D-F733-4454-B3C2-D7CAE9B3DD62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E26FB6D-F733-4454-B3C2-D7CAE9B3DD62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E26FB6D-F733-4454-B3C2-D7CAE9B3DD62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
