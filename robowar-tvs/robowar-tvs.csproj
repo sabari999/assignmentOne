@@ -92,6 +92,10 @@
     <Content Include="Screenshots\InitialScreen.PNG" />
     <Content Include="Screenshots\InputParams.PNG" />
     <Content Include="Screenshots\Output.PNG" />
+    <Content Include="Screenshots\Scenario1.PNG" />
+    <Content Include="Screenshots\Scenario2.PNG" />
+    <Content Include="Screenshots\Scenario3.PNG" />
+    <Content Include="Screenshots\Scenario4.PNG" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
